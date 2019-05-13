@@ -12,3 +12,6 @@ prepare :
 
 %.pdf : %.html
 	node_modules/.bin/decktape -s 1920x1080 reveal $<\?fragments=true $@
+
+add_images:
+	@git add -v `grep 'image:' index.adoc|sed -e 's@.*:\(.*\)\[.*@images/\1@'`
