@@ -204,6 +204,17 @@ IMPORTANT: Ok!
 
 == My Rebuttal
 
+=== White Box Attacks
+:stem: latexmath
+
+[asciimath] 
+++++ 
+x^{t+1} = \prod_{x+\mathcal{S}} (x^{t} + \epsilon{} \sign{\delta_x L(\theta,x,y)})
+++++
+
+Using Projected Gradient Descent <<<Madry>>>
+
+
 === Attacks always assume knowledge
 
 Paper defines Black Box attacks as:

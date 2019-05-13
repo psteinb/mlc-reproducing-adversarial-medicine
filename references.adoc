@@ -8,3 +8,5 @@
 - [[[Finlayson18,5]]] Finlayson, Samuel G., et al. "Adversarial attacks against medical deep learning systems." arXiv preprint https://arxiv.org/abs/1804.05296[arXiv:1804.05296] (2018).
 - [[[Biggio18,6]]] Biggio, Battista, and Fabio Roli. "Wild patterns: Ten years after the rise of adversarial machine learning." Pattern Recognition 84 (2018): 317-331. https://arxiv.org/abs/1712.03141[arXiv:1712.03141]
 - [[[Gu,7]]] Gu, Tianyu, Brendan Dolan-Gavitt, and Siddharth Garg. "Badnets: Identifying vulnerabilities in the machine learning model supply chain." arXiv preprint https://arxiv.org/abs/1708.06733[arXiv:1708.06733] (2017).
+- [[[Madry,8]]] Aleksander Madry, Aleksandar Makelov, Ludwig Schmidt, Dimitris Tsipras, and Adrian Vladu. 2017. Towards deep learning models resistant to adversarial attacks.
+arXiv preprint https://arxiv.org/abs/1706.06083[arXiv:1706.06083] (2017).
