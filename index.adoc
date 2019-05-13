@@ -1,222 +1,233 @@
-= Better Teaching, Better Software, Better Science
+= Blind Adversarial Attacks Against Medical Deep Learning Systems
 :imagesdir: images
 :icons: font
-:date: April 8, 2019
+:date: May 16, 2019
 :my_name: Peter Steinbach
 :my_email: steinbach@extern.mpi-cbg.de
 :my_twitter: psteinb_
 :my_github: psteinb
 :revealjs_slideNumber: true
 :revealjs_center: false
+:revealjs_BackgroundVertical: null
 :revealjs_width: 1600
-:revealjs_heigth: 900
+:revealjs_margin: .05
 :revealjs_plugin_pdf: enabled #you run your presentation in a browser with ?print-pdf at the end of the URL, you can then use the default print function to print the slide deck into a PDF document.
 :customcss: custom.css
 :stem:
 
 mailto:{my_email}[{my_name}] +
-//twitter: https://twitter.com/{my_twitter}[psteinb_], github: https://github.com/{my_github}[psteinb] +
-{date} +
-Dresden, Germany
+https://twitter.com/{my_twitter}[icon:twitter[] psteinb_] https://github.com/{my_github}[icon:github[] psteinb] + 
+2nd MLC Workshop {date} +
+Helmholtz-Zentrum Dresden-Rossendorf, Germany
 
-== Software and Science
+== Introducing Adversarial Examples
 
-[cols=">.<,^.<",width=100%,frame=none,grid=none] 
+icon:question-circle[5x]
+
+=== Supervised Deep Learning Classifiers
+
+image:dl-process.png[heigth=80%]
+
+From <<MapRBlog>>
+
+[.notes]
+--
+* classification (accuracy better than human)
+* large training/test set
+* data set = good balance of classes
+--
+
+=== What are Adversarial Examples?
+
+image:advex-explained-1-nogradient.png[width=90%]
+
+From <<Goodfellow14>> (based on <<Szegedy14>>)
+
+=== Fooling by printing
+
+image::advex-explained-2.png[height=140%]
+
+From <<Kurakin16>>
+
+=== Fooling by backdoors
+
+image:badnet-without-caption.png[width=50%]
+
+From <<GU>>
+
+
+=== Consequences?
+
+- security of autonomous driving
+- security of voice recognition systems (Siri, Alexa, ...)
+- product quality of online tools
+- trust in automated decision tools
+- trust in scientific classifiers
+
+WARNING: Affects any publicly deployed ML system that allows unsupervised usage!
+
+
+=== Taxonomy based on <<Biggio18>>
+
+[cols="4*",options="noheader"]
 |===
+|type
+|white box
+|grey box
+|black box
+
+|adversary knows
+|all of
+|subset of
+|only queries
+
+a| &nbsp;
 a| 
-[.fragment]
-**software = product of science**
-[.fragment]
-* http://openfpm.mpi-cbg.de[openfpm]
-* http://csbdeep.bioimagecomputing.com[csbdeep/care]
-* https://github.com/AdaptiveParticles/LibAPR[LibAPR]
-* https://github.com/thegenemyers/DALIGNER[DALIGNER]
-
-a|[.fragment]
-**software = tool of science**
-[.fragment]
-* simulation
-* data management
-* data analysis/processing 
-* optimisation
-* quality control
-* visualisation
+* dataset
+* feature set
+* learning alg + loss
+* trained weights
+a| 
+* [.graytext]#dataset#
+* feature set
+* learning alg + loss
+* [.graytext]#trained weights#
+a| 
+* [.graytext]#dataset#
+* [.graytext]#feature set#
+* [.graytext]#learning alg + loss#
+* [.graytext]#trained weights#
 |===
+
+WARNING: Boundaries not clear cut
+
+
+== Adversarial Attacks Against Medical Deep Learning Systems
+
+=== Doctor's Appointment 
+
+icon:user-md[5x]
+
+=== Measurement
+
+icon:heartbeat[5x]
+
+=== Diagnosis
+
+icon:medkit[5x] &nbsp; or &nbsp; icon:heart[5x]
+
+=== Paper
+
+"Adversarial Attacks Against Medical Deep Learning Systems" +
+Samuel G. Finlayson, Hyung Won Chung, Isaac S. Kohane, Andrew L. Beam (HMS+Harvard+MIT)
+
+Science  22 Mar 2019:
+Vol. 363, Issue 6433, pp. 1287-1289
+DOI: https://doi.org/10.1126/science.aaw4399[10.1126/science.aaw4399]
 
 [NOTE.speaker]
 --
-- tool of science = training is required
+- published in Science
+- reproduced it
 --
 
-== https://carpentries.org/[The Carpentries]
+=== 3 open datasets
 
-[cols="^.<,^.<,^.<",width=100%,frame=none,grid=none] 
+- https://www.kaggle.com/c/diabetic-retinopathy-detection/data[Diabetic Retinopathy Detection]
+- http://academictorrents.com/details/557481faacd824c83fbf57dcf7b6da9383b3235a[X-ray Dataset of 14 Common Thorax Disease]
+- https://www.isic-archive.com/#!/topWithHeader/onlyHeaderTop/gallery[skin cancer dataset] (omitted from this presentation)
+
+=== Data Access
+
+- 83 GB shared through kaggle (Diabetic Retinopathy Detection)
+- 42 GB shared through science torrent (X-ray Dataset of 14 Common Thorax Disease)
+
+IMPORTANT: Very Good!
+
+[.notes]
+--
+* download of datasets was somewhat easy
+* kaggle required to create an account
+* omitted dataset used custom formatted REST API without front-end library :/
+--
+
+=== Diabetic Retinopathy (DR)
+
+[cols=">.^35,<.^65"]
 |===
-a| image:dc-white.png[width=80%]
-a| image:lc-white.png[width=80%]
-a| image:swc-white.png[width=80%]
-|===
+a|
+image:dr-original.png[width=80%,align=right]
 
-**Merged in 2018!**
+a|
+* https://www.kaggle.com/c/diabetic-retinopathy-detection/data[kaggle dataset]: https://en.wikipedia.org/wiki/Ophthalmoscopy[fundus photographs]
+* Diabetic retinopathy is the leading cause of blindness in the working-age population of the developed world.
+* Clinicians can identify DR by the presence of lesions (vascular abnormalities due to disease)
+* 88702 images, approx. 4752x3168 RGB jpegs
+* 5 labels (severity of DR)
 
-[NOTE.speaker]
---
-- history: SWC was there first
-- 3 projects merged in 2018
---
-
-== https://carpentries.org/[The Carpentries]
-
-[%step]
-* teach foundational coding and data science skills + 
-to scientists https://carpentries.org/files/assessment/TheCarpentries2018AnnualReport.pdf[worldwide]
-* coach/certify trainiers in evidence-based teaching methods
-* http://swcarpentry.github.io/python-novice-gapminder/[share and evolve material] as open-source on github
-* non-profit international organisation +
-(funding: 59% membership fees, 19% workshop fees, 22% donations)
-* https://carpentries.org/members/[70+ members]: EMBL/EBI, Cambridge U, Stanford U, ...
-
-[NOTE.speaker]
---
-- Ian and myself are instructors
-- how does workshops look like?
---
-
-== A Software Carpentry Bootcamp
-
-
-1. Automating Tasks with the Unix Shell (1 day)
-2. Basics of Data Analysis and Coding with Python (1.5 days)
-3. Version Control with Git (0.5 days)
-
-Example: +
-https://indico.mpi-cbg.de/event/135/[Practical Skills for Data Analysis and Scientific Computing] +
-(MPI CBG, Jan 14-16, 2019)
-
-== Carpentries' Evidence Based Teaching
-
-[cols=">.<,^.<",width=100%,frame=none,grid=none] 
-|===
-a| [.fragment] 
-learning as a group (community building)
-a| [.fragment] 
-consider learners background + 
-(pre-workshop survey, https://github.com/hpc-carpentry/hpc-carpentry.github.io/blob/master/why-hpc-carpentry.md#learner-profiles[learner profiles])
-a| [.fragment] 
-continuous feedback during class + 
-(sticky notes, etherpad)
-a| [.fragment] 
-http://swcarpentry.github.io/shell-novice/02-filedir/index.html[affirmative self-assessment exercises] during class
-a| [.fragment] 
-pair teaching
-a| [.fragment] 
-quality control
-(post-workshop survey)
-2.2+a| [.fragment]
-NOTE: Goal: **Interactive, Sustainable and Engaging Workshops**
 |===
 
-[NOTE.speaker]
---
-- show learner profile
-- show affirmative self-assessment exercise
---
 
-== Carpentries' Evaluation
 
-[cols="^.<,^.<",width=100%,frame=none,grid=none] 
+=== http://academictorrents.com/details/557481faacd824c83fbf57dcf7b6da9383b3235a[ChestX-ray8]
+
+[cols=">.^35,<.^65"]
 |===
-a| image:swc-survey-2017.png[width=80%]
-a| image:longtermassessment-6months-after.png[width=80%]
+a|
+image:cxr-original.png[width=80%,align=right]
 
-a| https://carpentries.github.io/assessment/learner-assessment/archives/2017/code/2017-July-post.html[post-workshop survey]
-a| https://carpentries.github.io/assessment/learner-assessment/archives/2018/code/2018_January_long_term_report.html[long-term assessment]
+a|
+* Classification and Localization of Common Thorax Diseases
+* 112,120 images
+* 1024x1024 8-bit greyscale
+* 14 labels, appearing non-exclusively
+
 |===
 
-== Being a Carpentry Instructor ...
 
-[%step]
-* reduces time to prepare material +
-(shared open-source materials)
-* carpentry methods provide relyable teaching methods + 
-(self-confidence)
-* feedback from co-teachers increases robustness +
-(community based teaching)
-* career development for young PhDs, PostDocs, Service Staff, RGLs, ...
+=== Code
 
-== Success Stories
+- https://github.com/sgfin/adversarial-medicine[github repo]
+- training weights shared as .npy files through dropbox
+- notebooks reproduce all figures based on downloaded weights
+- python script to retrain two architectures (https://keras.io/applications/#resnet[Resnet50], https://keras.io/applications/#inceptionv3[InceptionV3])
 
-image:neubias-sticky-notes.png[heigth=80%] 
+=== Code
 
-== Is there Demand?
+- code was executable once dropbox weights downloaded
+- notebooks work from top to bottom
+- code largely undocumented
+- paper reports Resnet50 results, weights are for InceptionV3
+- readme reports similar results for either
 
-=== Courses by Scientists
+IMPORTANT: Ok!
 
-* IMPRS Computational Biology Bootcamp (CSBD labs)
-* https://indico.mpi-cbg.de/event/113/[Dresden Summer School in Systems Biology] (Sbalzarini+Zechner Lab, TUD)
-* MPI CBG Statistics Courses (Zechner Lab)
-* https://indico.mpi-cbg.de/event/118/[Deep Learning Bootcamp] (Myers & Jug Lab)
-* https://indico.mpi-cbg.de/event/50/[dais learnathons] (Jug lab)
-* https://www.biodip.de/education/bioimage-analysis/[BioDIP CARE Tutorial] (Myers & Jug lab)
+== My Rebuttal
 
-=== Courses by S&F
+=== Attacks always assume knowledge
 
-* introductory courses (SciComp):
-** https://indico.mpi-cbg.de/event/112/[HPC]
-** https://indico.mpi-cbg.de/event/71/[image analysis]
-** https://indico.mpi-cbg.de/event/40/[data science]
-** https://indico.mpi-cbg.de/event/135/[coding]
-* https://www.mpi-cbg.de/services-facilities/core-facilities/technology-development-studio-tds/courses/[Knime & cell profiler courses] (TDS)
+Paper defines Black Box attacks as:
 
-== Proposal: https://carpentries.org/membership/[3 year Silver membership] in Dresden
 
-=== Benefits
+=== Pure Black-box on Diabetic Retinopathy
 
-* 6 instructors trained per year + 
-(spaces shared)
-* increased teaching effectiveness + 
-(more time for science)
-* community to improve & deliver good teaching
-* port methods to other fields (image analysis, ML, ...)
-* https://hzdr.de[Helmholtz-Center Dresden-Rossendorf] is willing to participate
+[cols="^.<,^.<,^.<",width=100%,frame=none,grid=none]
+|===
+a| image:dr-original.png[width=80%]
+a| image:dr-adversarial.png[width=80%]
+a| image:dr-diff.png[width=80%]
+|===
 
-=== Costs
+=== Pure Black-box on Chest X-Ray
 
-* shared among partners
-** total: $ 7500 p.a.
-** CSBD and HZDR $ 3750 p.a. each
-** CSBD Executive Council covers $ 1875
-** RGLs of CSBD candidates cover $ 625
-* test phase for 1 year for now
-
-=== Instructor Training
-
-[%step]
-* 2-3 day online course (https://carpentries.github.io/instructor-training/[material])
-* find common video conference room for >2 candidates
-* taught remotely
-* exercises locally
-* certification procedure (sign-off afterwards)
-* 2 bootcamps required by each candidate
+[cols="^.<,^.<,^.<",width=100%,frame=none,grid=none]
+|===
+a| image:cxr-original.png[width=80%]
+a| image:cxr-adversarial.png[width=80%]
+a| image:cxr-diff.png[width=80%]
+|===
 
 == Summary
 
-=== The Carpentries
+include::references.adoc[]
 
-- open, sustainable and modern teaching of computational skills in academia
-- looking for individuals at CSBD/HZDR to create a carpentries community in Dresden
-- expression of interest to become an instructor from 3.5 CSBD staff +
-
-**Thank you for your Attention!**
-
-=== Your Feedback
-
-https://etherpad.gwdg.de/p/20190408-carpentries-in-dresden[Etherpad]
-
-== Further Reading
-
-* https://carpentries.org/files/assessment/TheCarpentries2018AnnualReport.pdf[Carpentries Annual Report] (Brochure)
-* https://f1000research.com/articles/3-62/v2[Software Carpentry: lessons learned] (Open Access Paper)
-* https://carpentries.github.io/assessment/learner-assessment/archives/2017/code/2017-July-post.html[continuous post-workshop survey reports]
-* https://carpentries.github.io/assessment/learner-assessment/archives/2018/code/2018_January_long_term_report.html[long-term assessment]
-* https://www.youtube.com/watch?v=FtKO619O5g0&t=161s[Pycon 2014 Talk: Lessons Learnt] (Youtube Recording)

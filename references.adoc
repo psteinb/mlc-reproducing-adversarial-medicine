@@ -1,0 +1,10 @@
+[bibliography]
+== References
+
+- [[[Szegedy14,1]]] Szegedy, Christian, et al. "Going deeper with convolutions." Proceedings of the IEEE conference on computer vision and pattern recognition. 2015, https://arxiv.org/abs/1409.4842[arXiv:1409.4842]
+- [[[Goodfellow14,2]]] Goodfellow, Ian J., Jonathon Shlens, and Christian Szegedy. "Explaining and harnessing adversarial examples." arXiv preprint https://arxiv.org/abs/1412.6572[arXiv:1412.6572] (2014).
+- [[[Kurakin16,3]]] Kurakin, Alexey, Ian Goodfellow, and Samy Bengio. "Adversarial examples in the physical world." arXiv preprint https://arxiv.org/abs/1607.02533[arXiv:1607.02533] (2016).
+- [[[MapRBlog,4]]] "Demystifying AI, Machine Learning and Deep Learning", https://MapRBlog.com/blog/demystifying-ai-ml-dl/[blog entry]
+- [[[Finlayson18,5]]] Finlayson, Samuel G., et al. "Adversarial attacks against medical deep learning systems." arXiv preprint https://arxiv.org/abs/1804.05296[arXiv:1804.05296] (2018).
+- [[[Biggio18,6]]] Biggio, Battista, and Fabio Roli. "Wild patterns: Ten years after the rise of adversarial machine learning." Pattern Recognition 84 (2018): 317-331. https://arxiv.org/abs/1712.03141[arXiv:1712.03141]
+- [[[Gu,7]]] Gu, Tianyu, Brendan Dolan-Gavitt, and Siddharth Garg. "Badnets: Identifying vulnerabilities in the machine learning model supply chain." arXiv preprint https://arxiv.org/abs/1708.06733[arXiv:1708.06733] (2017).
