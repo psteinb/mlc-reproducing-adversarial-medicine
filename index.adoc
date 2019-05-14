@@ -204,7 +204,7 @@ IMPORTANT: Ok!
 
 == My Rebuttal
 
-=== White Box Attacks
+=== White Box Attacks?
 :stem: latexmath
 
 Given:
@@ -222,27 +222,53 @@ Weight Update Rule:
 ++++
 
 
-==== Projected Gradient Descent Attack <<Madry>>
+=== Projected Gradient Descent Attack
 
 For a given set of variations stem:[S]
 
 [asciimath] 
 ++++ 
-x^{t+1} = \prod_{x+S} (x^{t} + \epsilon \sign(\nabla_x L(\theta,x,y)))
+x^{t+1} = Clip_{x,S} (x^{t} + \epsilon \sign(\nabla_x L(\theta,x,y)))
 ++++
 
+IMPORTANT: PGD <<Madry17>>,<<Kurakin1611>> is a White Box Attack!
 
 
 === Black-Box Attacks assume knowledge
 
 [quote]
 ____
-... black box attacks were performed by crafting the attack against an independently-trained model with the same architecture and then transferring the resultant adversarial
-examples to the victim.
+[...] black box attacks were performed by crafting the attack against an independently-trained model with the same architecture and then transferring the resultant adversarial examples to the victim.
 ____
 
-IMPORTANT: <<Biggio18>> defines this as Grey-Box Attack.
+* <<Biggio18>> defines this as Grey-Box attack
+* this paper cites <<Biggio18>>
+* <<Biggio18>> mentions that DL experts have reinvented/rediscovered what ML security experts have discovered with 5 year delay
 
+=== My Motivation
+
+icon:question-circle[5x]
+
+How about real black-box attacks?
+
+=== https://github.com/bethgelab/foolbox[Foolbox]
+
+[source,python]
+----
+import foolbox
+import keras
+import numpy as np
+
+keras_model = ...#load weights
+
+fmodel = foolbox.models.KerasModel(keras_model, bounds=(0, 255),
+				   preprocessing=preprocessing)
+
+image, label = foolbox.utils.imagenet_example()
+
+attack = foolbox.attacks.FGSM(fmodel)
+adversarial = attack(image[:, :, ::-1], label)
+----
 
 === Pure Black-box on Diabetic Retinopathy
 
@@ -253,7 +279,63 @@ a| image:dr-adversarial.png[width=80%]
 a| image:dr-diff.png[width=80%]
 |===
 
-=== Pure Black-box on Chest X-Ray
+[source,python]
+----
+attack = foolbox.attacks.SaltAndPepperNoiseAttack(fmodel)
+adversarial = attack(image[:, :, ::-1], label)
+----
+
+=== Pure Black-box on Chest X-Ray?
+
+[cols="^.<,^.<,^.<",width=100%,frame=none,grid=none]
+|===
+a| image:cxr-original.png[width=90%]
+a| image:cxr-adversarial.png[width=90%]
+a| image:cxr-diff.png[width=90%]
+|===
+
+[.notes]
+--
+* real world: shot noise in CCM chip
+--
+
+=== Easy! But why?
+
+[cols="2*",width=100%,frame=none,grid=none]
+|===
+a| class counts
+a| resolution
+|===
+
+[.notes]
+--
+* inbalanced class frequencies in training dataset
+* real world: DR discovered in very fine structured elements
+* subject to further study
+--
+
+=== Chest X-Ray Dataset?
+
+[cols="2*",width=100%,frame=none,grid=none]
+|===
+a| image:cxr-original.png[width=80%]
+a|
+* very hard to attack
+* no noise based attack would lead to misclassification
+|===
+
+=== Decision-based Attacks
+
+image:1712.04248_fig7.png[width=80%]
+
+Decision Boundary Attack in <<Brendel17>>
+
+[.notes]
+--
+* high count of calls to model's predict function
+--
+
+=== Pure Black-box Attacks on Chest X-Ray
 
 [cols="^.<,^.<,^.<",width=100%,frame=none,grid=none]
 |===
