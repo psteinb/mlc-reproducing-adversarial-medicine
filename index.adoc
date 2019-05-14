@@ -139,8 +139,11 @@ DOI: https://doi.org/10.1126/science.aaw4399[10.1126/science.aaw4399]
 
 === Data Access
 
-- 83 GB shared through kaggle (Diabetic Retinopathy Detection)
-- 42 GB shared through science torrent (X-ray Dataset of 14 Common Thorax Disease)
+* Diabetic Retinopathy Dataset
+** 83 GB shared through kaggle
+
+* X-ray Dataset
+** 42 GB shared through science torrent 
 
 IMPORTANT: Very Good!
 
@@ -187,20 +190,27 @@ a|
 
 === Code
 
-- https://github.com/sgfin/adversarial-medicine[github repo]
+https://github.com/sgfin/adversarial-medicine[github.com/sgfin/adversarial-medicin]
+
+[%step]
 - training weights shared as .npy files through dropbox
 - notebooks reproduce all figures based on downloaded weights
 - python script to retrain two architectures (https://keras.io/applications/#resnet[Resnet50], https://keras.io/applications/#inceptionv3[InceptionV3])
 
-=== Code
+=== Code Quality
 
+[%step]
 - code was executable once dropbox weights downloaded
 - notebooks work from top to bottom
 - code largely undocumented
 - paper reports Resnet50 results, weights are for InceptionV3
 - readme reports similar results for either
 
-IMPORTANT: Ok!
+[.notes]
+--
+* Code Quality = Ok
+--
+
 
 == My Rebuttal
 
@@ -224,14 +234,20 @@ Weight Update Rule:
 
 === Projected Gradient Descent Attack
 
-For a given set of variations stem:[S]
 
 [asciimath] 
 ++++ 
 x^{t+1} = Clip_{x,S} (x^{t} + \epsilon \sign(\nabla_x L(\theta,x,y)))
 ++++
 
-IMPORTANT: PGD <<Madry17>>,<<Kurakin1611>> is a White Box Attack!
+[%step]
+* For a given set of variations stem:[S]
+* PGD <<Madry17>>,<<Kurakin1611>> is a White Box Attack!
+
+[.notes]
+--
+* Using optimisation to counter optimisation
+--
 
 
 === Black-Box Attacks assume knowledge
@@ -272,11 +288,14 @@ adversarial = attack(image[:, :, ::-1], label)
 
 === Pure Black-box on Diabetic Retinopathy
 
-[cols="^.<,^.<,^.<",width=100%,frame=none,grid=none]
+[cols="^.^,^.^,^.^",width=100%,frame=none,grid=none]
 |===
 a| image:dr-original.png[width=80%]
+Original
 a| image:dr-adversarial.png[width=80%]
+Adversarial
 a| image:dr-diff.png[width=80%]
+Difference*20
 |===
 
 [source,python]
@@ -284,15 +303,6 @@ a| image:dr-diff.png[width=80%]
 attack = foolbox.attacks.SaltAndPepperNoiseAttack(fmodel)
 adversarial = attack(image[:, :, ::-1], label)
 ----
-
-=== Pure Black-box on Chest X-Ray?
-
-[cols="^.<,^.<,^.<",width=100%,frame=none,grid=none]
-|===
-a| image:cxr-original.png[width=90%]
-a| image:cxr-adversarial.png[width=90%]
-a| image:cxr-diff.png[width=90%]
-|===
 
 [.notes]
 --
@@ -316,7 +326,7 @@ a| resolution
 
 === Chest X-Ray Dataset?
 
-[cols="2*",width=100%,frame=none,grid=none]
+[cols="2*^.^",frame=none,grid=none]
 |===
 a| image:cxr-original.png[width=80%]
 a|
@@ -328,7 +338,7 @@ a|
 
 image:1712.04248_fig7.png[width=80%]
 
-Decision Boundary Attack in <<Brendel17>>
+Decision Boundary Attack <<Brendel17>>
 
 [.notes]
 --
@@ -340,11 +350,35 @@ Decision Boundary Attack in <<Brendel17>>
 [cols="^.<,^.<,^.<",width=100%,frame=none,grid=none]
 |===
 a| image:cxr-original.png[width=80%]
+Original
 a| image:cxr-adversarial.png[width=80%]
+Adversarial
 a| image:cxr-diff.png[width=80%]
+Difference*20
 |===
 
+[.notes]
+--
+* model's predict function was called N times
+--
+
 == Summary
+
+=== Adversarial Attacks Against Medical Deep Learning Systems
+
+[%step]
+* robustness of DL classifiers as diagnostic systems
+* successfully achieved reproducibility (praise to the authors)
+* illustrated classifiers and attacks appear remote to reality
+* portions of the paper contradictory in the details
+
+[role=large-text]
+=== Bigger Picture
+
+[%step]
+* end-to-end DL may not produce machine intelligence (data intelligence?)
+* if data is all you got, better treat it carefully!
+* adversarial examples = tool to probe resilience of your classifiers
 
 include::references.adoc[]
 
