@@ -207,17 +207,41 @@ IMPORTANT: Ok!
 === White Box Attacks
 :stem: latexmath
 
+Given:
+
 [asciimath] 
 ++++ 
-x^{t+1} = \prod_{x+\mathcal{S}} (x^{t} + \epsilon{} \sign{\delta_x L(\theta,x,y)})
+\vec{y} = f(\vec{x}, \theta), L( \vec{y}^{true}, f(\vec{x}, \theta))
 ++++
 
-Using Projected Gradient Descent <<<Madry>>>
+Weight Update Rule:
+
+[asciimath] 
+++++ 
+\theta_{i+1} = \theta_{i} + \eta \nabla_{\theta}L( \vec{y}^{true}, f(\vec{x}, \theta_i))
+++++
 
 
-=== Attacks always assume knowledge
+==== Projected Gradient Descent Attack <<Madry>>
 
-Paper defines Black Box attacks as:
+For a given set of variations stem:[S]
+
+[asciimath] 
+++++ 
+x^{t+1} = \prod_{x+S} (x^{t} + \epsilon \sign(\nabla_x L(\theta,x,y)))
+++++
+
+
+
+=== Black-Box Attacks assume knowledge
+
+[quote]
+____
+... black box attacks were performed by crafting the attack against an independently-trained model with the same architecture and then transferring the resultant adversarial
+examples to the victim.
+____
+
+IMPORTANT: <<Biggio18>> defines this as Grey-Box Attack.
 
 
 === Pure Black-box on Diabetic Retinopathy
