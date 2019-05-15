@@ -139,8 +139,11 @@ DOI: https://doi.org/10.1126/science.aaw4399[10.1126/science.aaw4399]
 
 === Data Access
 
-- 83 GB shared through kaggle (Diabetic Retinopathy Detection)
-- 42 GB shared through science torrent (X-ray Dataset of 14 Common Thorax Disease)
+* Diabetic Retinopathy Dataset
+** 83 GB shared through kaggle
+
+* X-ray Dataset
+** 42 GB shared through science torrent 
 
 IMPORTANT: Very Good!
 
@@ -187,57 +190,195 @@ a|
 
 === Code
 
-- https://github.com/sgfin/adversarial-medicine[github repo]
+https://github.com/sgfin/adversarial-medicine[github.com/sgfin/adversarial-medicin]
+
+[%step]
 - training weights shared as .npy files through dropbox
 - notebooks reproduce all figures based on downloaded weights
 - python script to retrain two architectures (https://keras.io/applications/#resnet[Resnet50], https://keras.io/applications/#inceptionv3[InceptionV3])
 
-=== Code
+=== Code Quality
 
+[%step]
 - code was executable once dropbox weights downloaded
 - notebooks work from top to bottom
 - code largely undocumented
 - paper reports Resnet50 results, weights are for InceptionV3
 - readme reports similar results for either
 
-IMPORTANT: Ok!
+[.notes]
+--
+* Code Quality = Ok
+--
+
 
 == My Rebuttal
 
+=== White Box Attacks?
+:stem: latexmath
+
+Given:
+
+[asciimath] 
+++++ 
+\vec{y} = f(\vec{x}, \theta), L( \vec{y}^{true}, f(\vec{x}, \theta))
+++++
+
+Weight Update Rule:
+
+[asciimath] 
+++++ 
+\theta_{i+1} = \theta_{i} + \eta \nabla_{\theta}L( \vec{y}^{true}, f(\vec{x}, \theta_i))
+++++
 
 
-=== White Box Attacks
+=== Projected Gradient Descent Attack
 
 
+[asciimath] 
+++++ 
+x^{t+1} = Clip_{x,S} (x^{t} + \epsilon \sign(\nabla_x L(\theta,x,y)))
+++++
 
-=== Attacks always assume knowledge
+[%step]
+* For a given set of variations stem:[S]
+* PGD <<Madry17>>,<<Kurakin1611>> is a White Box Attack!
 
-Paper defines Black Box attacks as:
+[.notes]
+--
+* Using optimisation to counter optimisation
+--
 
+
+=== Black-Box Attacks assume knowledge
+
+[quote]
+____
+[...] black box attacks were performed by crafting the attack against an independently-trained model with the same architecture and then transferring the resultant adversarial examples to the victim.
+____
+
+* <<Biggio18>> defines this as Grey-Box attack
+* this paper cites <<Biggio18>>
+* <<Biggio18>> mentions that DL experts have reinvented/rediscovered what ML security experts have discovered with 5 year delay
+
+=== My Motivation
+
+icon:question-circle[5x]
+
+How about real black-box attacks?
+
+=== https://github.com/bethgelab/foolbox[Foolbox]
+
+[source,python]
+----
+import foolbox
+import keras
+import numpy as np
+
+keras_model = ...#load weights
+
+fmodel = foolbox.models.KerasModel(keras_model, bounds=(0, 255),
+				   preprocessing=preprocessing)
+
+image, label = foolbox.utils.imagenet_example()
+
+attack = foolbox.attacks.FGSM(fmodel)
+adversarial = attack(image[:, :, ::-1], label)
+----
 
 === Pure Black-box on Diabetic Retinopathy
 
-[cols="^.<,^.<,^.<",width=100%,frame=none,grid=none]
+[cols="^.^,^.^,^.^",width=100%,frame=none,grid=none]
 |===
 a| image:dr-original.png[width=80%]
+Original
 a| image:dr-adversarial.png[width=80%]
+Adversarial
 a| image:dr-diff.png[width=80%]
+Difference*20
 |===
 
-=== Library Support: Foolbox
+[source,python]
+----
+attack = foolbox.attacks.SaltAndPepperNoiseAttack(fmodel)
+adversarial = attack(image[:, :, ::-1], label)
+----
 
+[.notes]
+--
+* real world: shot noise in CCM chip
+--
 
+=== Easy! But why?
 
-=== Pure Black-box on Chest X-Ray
+[cols="2*",width=100%,frame=none,grid=none]
+|===
+a| class counts
+a| resolution
+|===
+
+[.notes]
+--
+* inbalanced class frequencies in training dataset
+* real world: DR discovered in very fine structured elements
+* subject to further study
+--
+
+=== Chest X-Ray Dataset?
+
+[cols="2*^.^",frame=none,grid=none]
+|===
+a| image:cxr-original.png[width=80%]
+a|
+* very hard to attack
+* no noise based attack would lead to misclassification
+|===
+
+=== Decision-based Attacks
+
+image:1712.04248_fig7.png[width=80%]
+
+Decision Boundary Attack <<Brendel17>>
+
+[.notes]
+--
+* high count of calls to model's predict function
+--
+
+=== Pure Black-box Attacks on Chest X-Ray
 
 [cols="^.<,^.<,^.<",width=100%,frame=none,grid=none]
 |===
 a| image:cxr-original.png[width=80%]
+Original
 a| image:cxr-adversarial.png[width=80%]
+Adversarial
 a| image:cxr-diff.png[width=80%]
+Difference*20
 |===
 
+[.notes]
+--
+* model's predict function was called N times
+--
+
 == Summary
+
+=== Adversarial Attacks Against Medical Deep Learning Systems
+
+[%step]
+* robustness of DL classifiers as diagnostic systems
+* successfully achieved reproducibility (praise to the authors)
+* illustrated classifiers and attacks appear remote to reality
+* portions of the paper contradictory in the details
+
+[role=large-text]
+=== Bigger Picture
+
+[%step]
+* end-to-end DL may not produce machine intelligence (data intelligence?)
+* if data is all you got, better treat it carefully!
+* adversarial examples = tool to probe resilience of your classifiers
 
 include::references.adoc[]
 
