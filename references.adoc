@@ -1,25 +1,22 @@
 == References
 
-[bibliography]
 === !
 
-* [[Szegedy14,1]] Szegedy, Christian, et al. "Going deeper with convolutions." Proceedings of the IEEE conference on computer vision and pattern recognition. 2015, https://arxiv.org/abs/1409.4842[arXiv:1409.4842]
-* [[Goodfellow14,2]] Goodfellow, Ian J., Jonathon Shlens, and Christian Szegedy. "Explaining and harnessing adversarial examples." arXiv preprint https://arxiv.org/abs/1412.6572[arXiv:1412.6572] (2014).
-* [[Kurakin16,3]] Kurakin, Alexey, Ian Goodfellow, and Samy Bengio. "Adversarial examples in the physical world." arXiv preprint https://arxiv.org/abs/1607.02533[arXiv:1607.02533] (2016).
-* [[MapRBlog,4]] "Demystifying AI, Machine Learning and Deep Learning", https://MapRBlog.com/blog/demystifying-ai-ml-dl/[blog entry]
-* [[Finlayson18,5]] Finlayson, Samuel G., et al. "Adversarial attacks against medical deep learning systems." arXiv preprint https://arxiv.org/abs/1804.05296[arXiv:1804.05296] (2018).
+* [Szegedy14] Szegedy, Christian, et al. "Going deeper with convolutions." Proceedings of the IEEE conference on computer vision and pattern recognition. 2015, https://arxiv.org/abs/1409.4842[arXiv:1409.4842]
+* [Goodfellow14] Goodfellow, Ian J., Jonathon Shlens, and Christian Szegedy. "Explaining and harnessing adversarial examples." arXiv preprint https://arxiv.org/abs/1412.6572[arXiv:1412.6572] (2014).
+* [Kurakin16] Kurakin, Alexey, Ian Goodfellow, and Samy Bengio. "Adversarial examples in the physical world." arXiv preprint https://arxiv.org/abs/1607.02533[arXiv:1607.02533] (2016).
+* [MapRBlog] "Demystifying AI, Machine Learning and Deep Learning", https://MapRBlog.com/blog/demystifying-ai-ml-dl/[blog entry]
+* [Finlayson18] Finlayson, Samuel G., et al. "Adversarial attacks against medical deep learning systems." arXiv preprint https://arxiv.org/abs/1804.05296[arXiv:1804.05296] (2018).
 
-[bibliography]
 === !
 
-* [[Biggio18,6]] Biggio, Battista, and Fabio Roli. "Wild patterns: Ten years after the rise of adversarial machine learning." Pattern Recognition 84 (2018): 317-331. https://arxiv.org/abs/1712.03141[arXiv:1712.03141]
-* [[Gu17,7]] Gu, Tianyu, Brendan Dolan-Gavitt, and Siddharth Garg. "Badnets: Identifying vulnerabilities in the machine learning model supply chain." arXiv preprint https://arxiv.org/abs/1708.06733[arXiv:1708.06733] (2017).
-* [[Madry17,8]] Aleksander Madry, Aleksandar Makelov, Ludwig Schmidt, Dimitris Tsipras, and Adrian Vladu. 2017. Towards deep learning models resistant to adversarial attacks.
+* [Biggio18] Biggio, Battista, and Fabio Roli. "Wild patterns: Ten years after the rise of adversarial machine learning." Pattern Recognition 84 (2018): 317-331. https://arxiv.org/abs/1712.03141[arXiv:1712.03141]
+* [Gu17] Gu, Tianyu, Brendan Dolan-Gavitt, and Siddharth Garg. "Badnets: Identifying vulnerabilities in the machine learning model supply chain." arXiv preprint https://arxiv.org/abs/1708.06733[arXiv:1708.06733] (2017).
+* [Madry17] Aleksander Madry, Aleksandar Makelov, Ludwig Schmidt, Dimitris Tsipras, and Adrian Vladu. 2017. Towards deep learning models resistant to adversarial attacks.
 * arXiv preprint https://arxiv.org/abs/1706.06083[arXiv:1706.06083] (2017).
-* [[Kurakin1611,9]] Alexey Kurakin, Ian Goodfellow and Samy Bengio. Adversarial Machine Learning at Scale. arXiv preprint https://arxiv.org/abs/1611.01236[arXiv:1611.01236] (2016)
+* [Kurakin1611] Alexey Kurakin, Ian Goodfellow and Samy Bengio. Adversarial Machine Learning at Scale. arXiv preprint https://arxiv.org/abs/1611.01236[arXiv:1611.01236] (2016)
 
-[bibliography]
 === !
 
-* [[Rauber17,10]] Jonas Rauber, Wieland Brendel and Matthias Bethge. Foolbox: A Python toolbox to benchmark the robustness of machine learning models. arXiv preprint https://arxiv.org/abs/1707.04131[arXiv:1707.04131] (2017)
-* [[Brendel17,11]] Wieland Brendel, Jonas Rauber and Matthias Bethge. Decision-Based Adversarial Attacks: Reliable Attacks Against Black-Box Machine Learning Models. arXiv preprint https://arxiv.org/abs/1712.04248[arXiv:1712.04248] (2017)
+* [Rauber17] Jonas Rauber, Wieland Brendel and Matthias Bethge. Foolbox: A Python toolbox to benchmark the robustness of machine learning models. arXiv preprint https://arxiv.org/abs/1707.04131[arXiv:1707.04131] (2017)
+* [Brendel1712] Wieland Brendel, Jonas Rauber and Matthias Bethge. Decision-Based Adversarial Attacks: Reliable Attacks Against Black-Box Machine Learning Models. arXiv preprint https://arxiv.org/abs/1712.04248[arXiv:1712.04248] (2017)

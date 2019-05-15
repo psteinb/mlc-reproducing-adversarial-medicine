@@ -404,7 +404,7 @@ image:cxr-original.png[width=50%]
 
 image:1712.04248_fig7.png[width=80%]
 
-<<Brendel17>>
+<<Brendel1712>>
 
 [.notes]
 --
@@ -417,12 +417,18 @@ image:1712.04248_fig7.png[width=80%]
 
 [cols="^.<,^.<,^.<",width=100%,frame=none,grid=none]
 |===
-a| image:cxr-original.png[width=80%]
-Original
-a| image:cxr-adversarial-template.png[width=80%]
-Adversarial
-a| image:cxr-adversarial.png[width=80%]
-Difference*20
+a| 
+[.text-center]
+.Original
+image:cxr-original.png[width=80%]
+a|
+[.text-center]
+.Adversarial Template
+image:cxr-adversarial-template.png[width=80%]
+a|
+[.text-center]
+.Adversarial
+image:cxr-adversarial.png[width=80%]
 |===
 
 [.notes]
@@ -448,6 +454,8 @@ Difference*20
 * end-to-end DL may not produce machine intelligence (data intelligence?)
 * if data is all you got, better treat it carefully!
 * adversarial examples = tool to probe resilience of your classifiers
+
+
 
 include::references.adoc[]
 
