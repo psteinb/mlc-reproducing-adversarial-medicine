@@ -132,7 +132,7 @@ a|
 * https://www.kaggle.com/c/diabetic-retinopathy-detection/data[kaggle dataset]: https://en.wikipedia.org/wiki/Ophthalmoscopy[fundus photographs]
 * Diabetic retinopathy is the leading cause of blindness in the working-age population of the developed world.
 * Clinicians can identify DR by the presence of lesions (vascular abnormalities due to disease)
-* 88702 images, approx. 4752x3168 RGB jpegs
+* 88702 images, max. 4752x3168 RGB jpegs
 * 5 labels (severity of DR)
 
 |===
@@ -229,16 +229,13 @@ x^{t+1} = Clip_{x,S} (x^{t} + \epsilon \sign(\nabla_x L(\theta,x,y)))
 
 [%step]
 * iterate until stem:[x^{t+1}] is missclassified
-* For a given set of variations stem:[S]
+* For a given set of allowed variations stem:[S]
 * PGD <<Madry17>>,<<Kurakin1611>> is a White Box Attack!
 
 [.notes]
 --
 * Using optimisation to counter optimisation
 --
-
-
-
 
 
 === Taxonomy based on <<Biggio18>>
@@ -378,6 +375,15 @@ a| image:cxr-original.png[width=80%]
 a|
 * very hard to attack
 * no noise based attack would lead to misclassification
+
+[source,python]
+----
+foolbox.attacks.SaltAndPepperNoiseAttack
+foolbox.attacks.GaussianBlurAttack
+foolbox.attacks.AdditiveUniformNoiseAttack
+foolbox.attacks.ContrastReductionAttack
+----
+
 |===
 
 === Decision-based Attacks
@@ -399,15 +405,15 @@ Decision Boundary Attack <<Brendel17>>
 |===
 a| image:cxr-original.png[width=80%]
 Original
-a| image:cxr-adversarial.png[width=80%]
+a| image:cxr-adversarial-template.png[width=80%]
 Adversarial
-a| image:cxr-diff.png[width=80%]
+a| image:cxr-adversarial.png[width=80%]
 Difference*20
 |===
 
 [.notes]
 --
-* model's predict function was called N times
+* model's predict function was called ~5000 times
 --
 
 == Summary
