@@ -326,7 +326,19 @@ a|
 .Class Inbalance
 image:dr_class_overview.svg[width=80%]
 
-a| resolution
+a|
+[source,python]
+----
+train_generator = train_datagen.flow_from_directory(
+            'images/train',
+            target_size=(224, 224),
+            batch_size=batch_size,
+            class_mode='categorical',
+            shuffle=True)
+----
+
+[.L-text]#Input images of [2500-4000]x[2000-2500] are resized to 224x224!#
+
 |===
 
 [.notes]
