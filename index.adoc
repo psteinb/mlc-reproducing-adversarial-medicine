@@ -192,7 +192,7 @@ a|
 
 === Code
 
-https://github.com/sgfin/adversarial-medicine[github.com/sgfin/adversarial-medicin]
+https://github.com/sgfin/adversarial-medicine[github.com/sgfin/adversarial-medicine]
 
 [%step]
 - training weights shared as .npy files through dropbox
@@ -321,7 +321,11 @@ adversarial = attack(image[:, :, ::-1], label)
 
 [cols="2*",width=100%,frame=none,grid=none]
 |===
-a| class counts
+a|
+[.text-center]
+.Class Inbalance
+image:dr_class_overview.svg[width=80%]
+
 a| resolution
 |===
 
