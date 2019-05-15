@@ -7,8 +7,9 @@ prepare :
 	npm install decktape
 
 
-%.html : %.adoc
+%.html : %.adoc references.adoc
 	bundle exec asciidoctor-revealjs $<
+	sed -i -e '/.*controls: true.*/s/.*/&\n  hash: true,/' -e 's/height: 700/height: 1080/' $@
 
 %.pdf : %.html
 	node_modules/.bin/decktape -s 1920x1080 reveal $<\?fragments=true $@
