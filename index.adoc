@@ -7,9 +7,10 @@
 :my_twitter: psteinb_
 :my_github: psteinb
 :revealjs_slideNumber: true
-:revealjs_center: false
+:revealjs_center: true
 :revealjs_BackgroundVertical: null
-:revealjs_width: 1600
+:revealjs_width: 1920
+:revealjs_hash: true
 :revealjs_margin: .05
 :revealjs_plugin_pdf: enabled #you run your presentation in a browser with ?print-pdf at the end of the URL, you can then use the default print function to print the slide deck into a PDF document.
 :customcss: custom.css
@@ -26,7 +27,7 @@ icon:question-circle[5x]
 
 === Supervised Deep Learning Classifiers
 
-image:dl-process.png[heigth=80%]
+image:dl-process.png[width=75%]
 
 From <<MapRBlog>>
 
@@ -45,7 +46,7 @@ From <<Goodfellow14>> (based on <<Szegedy14>>)
 
 === Fooling by printing
 
-image::advex-explained-2.png[height=140%]
+image:advex-explained-2.png[width=90%]
 
 From <<Kurakin16>>
 
@@ -53,7 +54,7 @@ From <<Kurakin16>>
 
 image:badnet-without-caption.png[width=50%]
 
-From <<GU>>
+From <<Gu17>>
 
 
 === Consequences?
@@ -64,12 +65,11 @@ From <<GU>>
 - trust in automated decision tools
 - trust in scientific classifiers
 
-WARNING: Affects any publicly deployed ML system that allows unsupervised usage!
-
+WARNING: [.XL-text]#Affects any deployed ML system!#
 
 === Taxonomy based on <<Biggio18>>
 
-[cols="4*",options="noheader"]
+[cols="4*",options="header"]
 |===
 |type
 |white box
@@ -99,7 +99,7 @@ a|
 * [.graytext]#trained weights#
 |===
 
-WARNING: Boundaries not clear cut
+WARNING: [.XL-text]#Boundaries not clear cut!#
 
 
 == Adversarial Attacks Against Medical Deep Learning Systems
@@ -118,11 +118,13 @@ icon:medkit[5x] &nbsp; or &nbsp; icon:heart[5x]
 
 === Paper
 
-"Adversarial Attacks Against Medical Deep Learning Systems" +
-Samuel G. Finlayson, Hyung Won Chung, Isaac S. Kohane, Andrew L. Beam (HMS+Harvard+MIT)
+[.XL-text]#Samuel G. Finlayson, Hyung Won Chung, Isaac S. Kohane, Andrew L. Beam (HMS+Harvard+MIT)# +
 
-Science  22 Mar 2019:
-Vol. 363, Issue 6433, pp. 1287-1289
+[.XXL-text]#"Adversarial Attacks Against Medical Deep Learning Systems"# +
+
+Science  +
+22 Mar 2019: +
+Vol. 363, Issue 6433, pp. 1287-1289 +
 DOI: https://doi.org/10.1126/science.aaw4399[10.1126/science.aaw4399]
 
 [NOTE.speaker]
@@ -269,7 +271,7 @@ How about real black-box attacks?
 
 === https://github.com/bethgelab/foolbox[Foolbox]
 
-[source,python]
+[source,python,align="center"]
 ----
 import foolbox
 import keras
@@ -290,15 +292,21 @@ adversarial = attack(image[:, :, ::-1], label)
 
 [cols="^.^,^.^,^.^",width=100%,frame=none,grid=none]
 |===
-a| image:dr-original.png[width=80%]
-Original
-a| image:dr-adversarial.png[width=80%]
-Adversarial
-a| image:dr-diff.png[width=80%]
-Difference*20
+a|
+[.text-center]
+.Original
+image:dr-original.png[width=80%]
+a|
+[.text-center]
+.Adversarial
+image:dr-adversarial.png[width=80%]
+a|
+[.text-center]
+.Difference*20
+image:dr-diff.png[width=80%]
 |===
 
-[source,python]
+[.L-text,source,python]
 ----
 attack = foolbox.attacks.SaltAndPepperNoiseAttack(fmodel)
 adversarial = attack(image[:, :, ::-1], label)
@@ -364,6 +372,7 @@ Difference*20
 
 == Summary
 
+[role=L-text]
 === Adversarial Attacks Against Medical Deep Learning Systems
 
 [%step]
@@ -372,7 +381,7 @@ Difference*20
 * illustrated classifiers and attacks appear remote to reality
 * portions of the paper contradictory in the details
 
-[role=large-text]
+[role=XL-text]
 === Bigger Picture
 
 [%step]

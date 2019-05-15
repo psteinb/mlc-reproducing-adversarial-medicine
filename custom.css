@@ -39,8 +39,35 @@
 
 }
 
-.large-text {
+.L-text {
+
+    font-size: 1.1em !important;
+
+}
+
+.XL-text {
 
     font-size: 1.2em !important;
 
+}
+
+.XXL-text {
+
+    font-size: 1.5em !important;
+
+}
+
+.text-right {
+
+    text-align: right !important;
+}
+
+.text-center {
+
+    text-align: center !important;
+}
+
+.text-left {
+
+    text-align: left !important;
 }
