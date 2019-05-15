@@ -14,12 +14,13 @@
 :revealjs_margin: .05
 :revealjs_plugin_pdf: enabled #you run your presentation in a browser with ?print-pdf at the end of the URL, you can then use the default print function to print the slide deck into a PDF document.
 :customcss: custom.css
+:source-highlighter: highlightjs
 :stem:
 
-mailto:{my_email}[{my_name}] +
-https://twitter.com/{my_twitter}[icon:twitter[] psteinb_] https://github.com/{my_github}[icon:github[] psteinb] + 
+mailto:{my_email}[{my_name}] (https://www.mpi-cbg.de[MPI CBG], https://www.scionics.de[Scionics]) +
 2nd MLC Workshop {date} +
-Helmholtz-Zentrum Dresden-Rossendorf, Germany
+Helmholtz-Zentrum Dresden-Rossendorf, Germany +
+https://twitter.com/{my_twitter}[icon:twitter[] psteinb_] https://github.com/{my_github}[icon:github[] psteinb] + 
 
 == Introducing Adversarial Examples
 
@@ -112,7 +113,7 @@ ately large threat in the medical domain, and provided examples of how such atta
 ____
 
 
-Can this be reproduced icon:question-cicle[2x]
+**Can this be reproduced ?**
 
 
 === 3 open datasets
@@ -187,8 +188,6 @@ https://github.com/sgfin/adversarial-medicine[github.com/sgfin/adversarial-medic
 - code largely undocumented
 - paper reports Resnet50 results, weights are for InceptionV3
 - readme reports similar results for either
-
-IMPORTANT: Ok!
 
 
 == My Rebuttal
@@ -357,6 +356,7 @@ train_generator = train_datagen.flow_from_directory(
 
 * Input image sizes range  [2500-4000]x[2000-2500]
 * before training, resized to 224x224
+* eye doctor: "DR pathologies are very fine structures!"
 
 |===
 
@@ -367,30 +367,44 @@ train_generator = train_datagen.flow_from_directory(
 * subject to further study
 --
 
-=== Chest X-Ray Dataset?
+=== DR Pathologies
 
 [cols="2*^.^",frame=none,grid=none]
 |===
-a| image:cxr-original.png[width=80%]
 a|
-* very hard to attack
-* no noise based attack would lead to misclassification
-
-[source,python]
-----
-foolbox.attacks.SaltAndPepperNoiseAttack
-foolbox.attacks.GaussianBlurAttack
-foolbox.attacks.AdditiveUniformNoiseAttack
-foolbox.attacks.ContrastReductionAttack
-----
-
+[.text-center]
+.Healthy
+image:dr-10-left-level0_800px.jpg[width=80%]
+a|
+[.text-center]
+.Malignant
+image:dr-16-left-level4_800px.jpg[width=80%]
 |===
 
-=== Decision-based Attacks
+
+=== Chest X-Ray Dataset?
+
+
+[cols="2*^.^",frame=none,grid=none]
+|===
+a|
+[.text-center]
+.No simple attack worked
+* `SaltAndPepperNoiseAttack`
+* `GaussianBlurAttack`
+* `AdditiveUniformNoiseAttack`
+* `ContrastReductionAttack`
+a|
+[.text-center]
+.Original
+image:cxr-original.png[width=50%]
+|===
+
+=== Decision Boundary Attack
 
 image:1712.04248_fig7.png[width=80%]
 
-Decision Boundary Attack <<Brendel17>>
+<<Brendel17>>
 
 [.notes]
 --
