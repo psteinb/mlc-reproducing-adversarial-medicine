@@ -67,6 +67,180 @@ From <<Gu17>>
 
 WARNING: [.XL-text]#Affects any deployed ML system!#
 
+
+
+== Adversarial Attacks Against Medical Deep Learning Systems
+
+=== Doctor's Appointment 
+
+icon:user-md[5x]
+
+=== Measurement
+
+icon:heartbeat[5x]
+
+=== Diagnosis
+
+icon:medkit[5x] &nbsp; or &nbsp; icon:heart[5x]
+
+=== Adversarial Attacks Against Medical Deep Learning Systems
+
+[.XL-text]#Samuel G. Finlayson, Hyung Won Chung, Isaac S. Kohane, Andrew L. Beam (HMS+Harvard+MIT)# +
+
+Science, 22 Mar 2019, Vol. 363, Issue 6433, pp. 1287-1289, https://doi.org/10.1126/science.aaw4399[10.1126/science.aaw4399]
+
+[quote]
+____
+The prospect of improving healthcare and medicine with the use
+of deep learning is truly exciting. [...]
+it seems inevitable that medical deep learning algorithms will become entrenched in the already multi-billion dollar medical information technology industry.
+____
+
+[NOTE.speaker]
+--
+- published in Science
+- reproduced it
+--
+
+[.XL-text]
+=== Conclusion
+
+[quote, Finlayson et al. "Adversarial Attacks Against Medical Deep Learning Systems"]
+____
+In this work, we have outlined the systemic and technological reasons that cause adversarial examples to pose a disproportion-
+ately large threat in the medical domain, and provided examples of how such attacks may be executed.
+____
+
+
+Can this be reproduced icon:question-cicle[2x]
+
+
+=== 3 open datasets
+
+- https://www.kaggle.com/c/diabetic-retinopathy-detection/data[Diabetic Retinopathy Detection]
+- http://academictorrents.com/details/557481faacd824c83fbf57dcf7b6da9383b3235a[X-ray Dataset of 14 Common Thorax Disease]
+- https://www.isic-archive.com/#!/topWithHeader/onlyHeaderTop/gallery[skin cancer dataset] (omitted from this presentation)
+
+=== https://www.kaggle.com/c/diabetic-retinopathy-detection/data[Diabetic Retinopathy] (DR)
+
+[cols=">.^35,<.^65"]
+|===
+a|
+image:dr-original.png[width=80%,align=right]
+
+a|
+* https://www.kaggle.com/c/diabetic-retinopathy-detection/data[kaggle dataset]: https://en.wikipedia.org/wiki/Ophthalmoscopy[fundus photographs]
+* Diabetic retinopathy is the leading cause of blindness in the working-age population of the developed world.
+* Clinicians can identify DR by the presence of lesions (vascular abnormalities due to disease)
+* 88702 images, approx. 4752x3168 RGB jpegs
+* 5 labels (severity of DR)
+
+|===
+
+
+
+=== http://academictorrents.com/details/557481faacd824c83fbf57dcf7b6da9383b3235a[ChestX-ray8]
+
+[cols=">.^35,<.^65"]
+|===
+a|
+image:cxr-original.png[width=80%,align=right]
+
+a|
+* Classification and Localization of Common Thorax Diseases
+* 112,120 images
+* 1024x1024 8-bit greyscale
+* 14 labels, appearing non-exclusively
+
+|===
+
+=== Data Access
+
+* Diabetic Retinopathy Dataset
+** 83 GB shared through kaggle
+
+* X-ray Dataset
+** 42 GB shared through science torrent 
+
+IMPORTANT: Very Good!
+
+[.notes]
+--
+* download of datasets was somewhat easy
+* kaggle required to create an account
+* omitted dataset used custom formatted REST API without front-end library :/
+--
+
+=== Code
+
+https://github.com/sgfin/adversarial-medicine[github.com/sgfin/adversarial-medicine]
+
+[%step]
+- notebooks reproduce all figures based on downloaded weights
+- python script to retrain two architectures (https://keras.io/applications/#resnet[Resnet50], https://keras.io/applications/#inceptionv3[InceptionV3])
+
+=== Code Quality
+
+[%step]
+- code was executable once dropbox weights downloaded
+- notebooks work from top to bottom
+- code largely undocumented
+- paper reports Resnet50 results, weights are for InceptionV3
+- readme reports similar results for either
+
+IMPORTANT: Ok!
+
+
+== My Rebuttal
+
+=== Claim
+
+[quote, Finlayson et al. "Adversarial Attacks Against Medical Deep Learning Systems"]
+____
+For each of our representative medical deep learning classifiers, both white and black box attacks were highly successful.
+____
+
+
+=== White Box Attacks?
+:stem: latexmath
+
+Given:
+
+[asciimath] 
+++++ 
+\vec{y} = f(\vec{x}, \theta), L( \vec{y}^{true}, f(\vec{x}, \theta))
+++++
+
+Weight Update Rule:
+
+[asciimath] 
+++++ 
+\theta_{i+1} = \theta_{i} + \eta \nabla_{\theta}L( \vec{y}^{true}, f(\vec{x}, \theta_i))
+++++
+
+
+=== Projected Gradient Descent Attack
+
+
+[asciimath] 
+++++ 
+x^{t+1} = Clip_{x,S} (x^{t} + \epsilon \sign(\nabla_x L(\theta,x,y)))
+++++
+
+[%step]
+* iterate until stem:[x^{t+1}] is missclassified
+* For a given set of variations stem:[S]
+* PGD <<Madry17>>,<<Kurakin1611>> is a White Box Attack!
+
+[.notes]
+--
+* Using optimisation to counter optimisation
+--
+
+
+
+
+
 === Taxonomy based on <<Biggio18>>
 
 [cols="4*",options="header"]
@@ -101,167 +275,12 @@ a|
 
 WARNING: [.XL-text]#Boundaries not clear cut!#
 
-
-== Adversarial Attacks Against Medical Deep Learning Systems
-
-=== Doctor's Appointment 
-
-icon:user-md[5x]
-
-=== Measurement
-
-icon:heartbeat[5x]
-
-=== Diagnosis
-
-icon:medkit[5x] &nbsp; or &nbsp; icon:heart[5x]
-
-=== Paper
-
-[.XL-text]#Samuel G. Finlayson, Hyung Won Chung, Isaac S. Kohane, Andrew L. Beam (HMS+Harvard+MIT)# +
-
-[.XXL-text]#"Adversarial Attacks Against Medical Deep Learning Systems"# +
-
-Science  +
-22 Mar 2019: +
-Vol. 363, Issue 6433, pp. 1287-1289 +
-DOI: https://doi.org/10.1126/science.aaw4399[10.1126/science.aaw4399]
-
-[NOTE.speaker]
---
-- published in Science
-- reproduced it
---
-
-=== 3 open datasets
-
-- https://www.kaggle.com/c/diabetic-retinopathy-detection/data[Diabetic Retinopathy Detection]
-- http://academictorrents.com/details/557481faacd824c83fbf57dcf7b6da9383b3235a[X-ray Dataset of 14 Common Thorax Disease]
-- https://www.isic-archive.com/#!/topWithHeader/onlyHeaderTop/gallery[skin cancer dataset] (omitted from this presentation)
-
-=== Data Access
-
-* Diabetic Retinopathy Dataset
-** 83 GB shared through kaggle
-
-* X-ray Dataset
-** 42 GB shared through science torrent 
-
-IMPORTANT: Very Good!
-
-[.notes]
---
-* download of datasets was somewhat easy
-* kaggle required to create an account
-* omitted dataset used custom formatted REST API without front-end library :/
---
-
-=== Diabetic Retinopathy (DR)
-
-[cols=">.^35,<.^65"]
-|===
-a|
-image:dr-original.png[width=80%,align=right]
-
-a|
-* https://www.kaggle.com/c/diabetic-retinopathy-detection/data[kaggle dataset]: https://en.wikipedia.org/wiki/Ophthalmoscopy[fundus photographs]
-* Diabetic retinopathy is the leading cause of blindness in the working-age population of the developed world.
-* Clinicians can identify DR by the presence of lesions (vascular abnormalities due to disease)
-* 88702 images, approx. 4752x3168 RGB jpegs
-* 5 labels (severity of DR)
-
-|===
-
-
-
-=== http://academictorrents.com/details/557481faacd824c83fbf57dcf7b6da9383b3235a[ChestX-ray8]
-
-[cols=">.^35,<.^65"]
-|===
-a|
-image:cxr-original.png[width=80%,align=right]
-
-a|
-* Classification and Localization of Common Thorax Diseases
-* 112,120 images
-* 1024x1024 8-bit greyscale
-* 14 labels, appearing non-exclusively
-
-|===
-
-
-=== Code
-
-https://github.com/sgfin/adversarial-medicine[github.com/sgfin/adversarial-medicine]
-
-[%step]
-- training weights shared as .npy files through dropbox
-- notebooks reproduce all figures based on downloaded weights
-- python script to retrain two architectures (https://keras.io/applications/#resnet[Resnet50], https://keras.io/applications/#inceptionv3[InceptionV3])
-
-=== Code Quality
-
-[%step]
-- code was executable once dropbox weights downloaded
-- notebooks work from top to bottom
-- code largely undocumented
-- paper reports Resnet50 results, weights are for InceptionV3
-- readme reports similar results for either
-
-[.notes]
---
-* Code Quality = Ok
---
-
-
-== My Rebuttal
-
-=== White Box Attacks?
-:stem: latexmath
-
-Given:
-
-[asciimath] 
-++++ 
-\vec{y} = f(\vec{x}, \theta), L( \vec{y}^{true}, f(\vec{x}, \theta))
-++++
-
-Weight Update Rule:
-
-[asciimath] 
-++++ 
-\theta_{i+1} = \theta_{i} + \eta \nabla_{\theta}L( \vec{y}^{true}, f(\vec{x}, \theta_i))
-++++
-
-
-=== Projected Gradient Descent Attack
-
-
-[asciimath] 
-++++ 
-x^{t+1} = Clip_{x,S} (x^{t} + \epsilon \sign(\nabla_x L(\theta,x,y)))
-++++
-
-[%step]
-* For a given set of variations stem:[S]
-* PGD <<Madry17>>,<<Kurakin1611>> is a White Box Attack!
-
-[.notes]
---
-* Using optimisation to counter optimisation
---
-
-
 === Black-Box Attacks assume knowledge
 
 [quote]
 ____
 [...] black box attacks were performed by crafting the attack against an independently-trained model with the same architecture and then transferring the resultant adversarial examples to the victim.
 ____
-
-* <<Biggio18>> defines this as Grey-Box attack
-* this paper cites <<Biggio18>>
-* <<Biggio18>> mentions that DL experts have reinvented/rediscovered what ML security experts have discovered with 5 year delay
 
 === My Motivation
 
@@ -284,9 +303,12 @@ fmodel = foolbox.models.KerasModel(keras_model, bounds=(0, 255),
 
 image, label = foolbox.utils.imagenet_example()
 
-attack = foolbox.attacks.FGSM(fmodel)
+attack = foolbox.attacks.LinfinityBasicIterativeAttack(fmodel)
 adversarial = attack(image[:, :, ::-1], label)
 ----
+
+* offers a variety of white and black box attacks
+* simple API can wrap models from TensorFlow, PyTorch, Theano, Keras, Lasagne, MXNet
 
 === Pure Black-box on Diabetic Retinopathy
 
@@ -309,7 +331,6 @@ image:dr-diff.png[width=80%]
 [.L-text,source,python]
 ----
 attack = foolbox.attacks.SaltAndPepperNoiseAttack(fmodel)
-adversarial = attack(image[:, :, ::-1], label)
 ----
 
 [.notes]
@@ -337,7 +358,8 @@ train_generator = train_datagen.flow_from_directory(
             shuffle=True)
 ----
 
-[.L-text]#Input images of [2500-4000]x[2000-2500] are resized to 224x224!#
+* Input image sizes range  [2500-4000]x[2000-2500]
+* before training, resized to 224x224
 
 |===
 
@@ -366,6 +388,8 @@ Decision Boundary Attack <<Brendel17>>
 
 [.notes]
 --
+* take Dalmatian and visually transform to cat
+* image is classified as Dalmatian
 * high count of calls to model's predict function
 --
 
