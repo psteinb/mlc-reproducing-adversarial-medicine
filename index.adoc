@@ -385,19 +385,23 @@ image:dr-16-left-level4_800px.jpg[width=80%]
 === Chest X-Ray Dataset?
 
 
-[cols="2*^.^",frame=none,grid=none]
+[cols="2*^.^",frame=none,grid=none,width=80%]
 |===
 a|
 [.text-center]
-No simple attack worked
+&nbsp; +
+&nbsp; +
+No simple attack worked: +
+
 * `SaltAndPepperNoiseAttack`
 * `GaussianBlurAttack`
 * `AdditiveUniformNoiseAttack`
 * `ContrastReductionAttack`
 a|
 [.text-center]
-.Original
-image:cxr-original.png[width=50%]
+&nbsp; +
+&nbsp; +
+image:cxr-original.png[width=50%,align=center]
 |===
 
 === Decision Boundary Attack
@@ -420,14 +424,17 @@ a|
 [.text-center]
 .Original
 image:cxr-original.png[width=80%]
+`predict(label) = healthy`
 a|
 [.text-center]
 .Adversarial Template
 image:cxr-adversarial-template.png[width=80%]
+`predict(label) = malignant`
 a|
 [.text-center]
 .Adversarial
 image:cxr-adversarial.png[width=80%]
+`predict(label) = malignant`
 |===
 
 [.notes]
