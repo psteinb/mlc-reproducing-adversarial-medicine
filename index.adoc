@@ -389,7 +389,7 @@ image:dr-16-left-level4_800px.jpg[width=80%]
 |===
 a|
 [.text-center]
-.No simple attack worked
+No simple attack worked
 * `SaltAndPepperNoiseAttack`
 * `GaussianBlurAttack`
 * `AdditiveUniformNoiseAttack`
@@ -402,16 +402,15 @@ image:cxr-original.png[width=50%]
 
 === Decision Boundary Attack
 
-image:1712.04248_fig7.png[width=80%]
+image:1712.04248_fig2.png[width=60%,float=left]
 
-<<Brendel1712>>
+&nbsp;
+&nbsp;
 
-[.notes]
---
-* take Dalmatian and visually transform to cat
-* image is classified as Dalmatian
-* high count of calls to model's predict function
---
+Decision-Based Adversarial Attacks: Reliable Attacks Against Black-Box Machine Learning Models. +
+Wieland Brendel, Jonas Rauber and Matthias Bethge +
+arXiv preprint https://arxiv.org/abs/1712.04248[arXiv:1712.04248] (2017)
+
 
 === Pure Black-box Attacks on Chest X-Ray
 
