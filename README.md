@@ -1,6 +1,6 @@
 # mlc-reproducing-adversarial-medicine
 
-Slidedeck for my talk on reproducing the paper "Adversarial Attacks Against Medical Deep Learning Systems"
+Slidedeck for my talk on reproducing the paper "Adversarial Attacks Against Medical Deep Learning Systems". There rendered slides can be viewed at [psteinb.github.io/mlc-reproducing-adversarial-medicine/](https://psteinb.github.io/mlc-reproducing-adversarial-medicine/).
 
 # How to build the slides
 
